@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task3/view/loginPage.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
@@ -36,7 +37,7 @@ class FirstPage extends StatelessWidget {
             height: 23,
           ),
           Container(
-            color: Colors.amber,
+            //color: Colors.amber,
             width: 323,
             height: 42,
             child: const Text(
@@ -52,7 +53,7 @@ class FirstPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 40, left: 30, right: 30),
               child: Container(
-                color: Colors.amber,
+                //color: Colors.amber,
                 width: 350,
                 height: 60,
                 child: Row(
@@ -62,7 +63,8 @@ class FirstPage extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0XFF1F41BB),
-                        fixedSize: const Size(160, 60), // Fixed width and height
+                        fixedSize:
+                            const Size(160, 60), // Fixed width and height
                         padding: const EdgeInsets.fromLTRB(20, 15, 20,
                             15), // Padding: top, right, bottom, left
                         elevation: 0, // Remove shadow (for opacity)
@@ -84,9 +86,17 @@ class FirstPage extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(160, 60), // Fixed width and height
+                        fixedSize:
+                            const Size(160, 60), // Fixed width and height
                         padding: const EdgeInsets.fromLTRB(20, 15, 20,
                             15), // Padding: left, top, right, bottom
                         backgroundColor: Colors
