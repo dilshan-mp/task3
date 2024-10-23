@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 class CustomeButton extends StatelessWidget {
   final String buttontext;
   final EdgeInsetsGeometry margin;
+  final VoidCallback onPressed;
   const CustomeButton(
-      {super.key, required this.buttontext, required this.margin});
+      {super.key,
+      required this.buttontext,
+      required this.margin,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,7 @@ class CustomeButton extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
