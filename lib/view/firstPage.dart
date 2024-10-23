@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task3/view/loginPage.dart';
+import 'package:task3/view/registerPage.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({super.key});
@@ -60,7 +61,14 @@ class FirstPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FirstPage(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0XFF1F41BB),
                         fixedSize:
@@ -90,7 +98,7 @@ class FirstPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       },
@@ -114,7 +122,10 @@ class FirstPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: const Text('Login'),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 ),
