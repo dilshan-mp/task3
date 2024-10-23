@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:task3/view/loginPage.dart';
 import 'package:task3/widgets/button.dart';
+import 'package:task3/widgets/socialmeadiaButton.dart';
 import 'package:task3/widgets/textfileds.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -57,9 +59,33 @@ class _RegisterPageState extends State<RegisterPage> {
             hintText: 'Confirm Password',
             inputType: TextInputType.visiblePassword,
           ),
-          CustomeButton(
-              buttontext: 'Sign Up',
-              margin: EdgeInsets.only(left: 30, right: 30, top: 50))
+          const CustomeButton(
+            buttontext: 'Sign Up',
+            margin: EdgeInsets.only(
+              left: 30,
+              right: 30,
+              top: 50,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginPage(),
+                  ),
+                );
+              },
+              child: const Text('Already have an account'),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 65),
+            child: Text('Or continue with'),
+          ),
+          const SocialMeadiaButton()
         ],
       ),
     );
