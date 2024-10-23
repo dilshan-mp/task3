@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:task3/widgets/button.dart';
+import 'package:task3/widgets/textfileds.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -43,7 +45,21 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
           ),
-          
+          CustomTextField(
+            hintText: 'Email',
+            inputType: TextInputType.emailAddress,
+          ),
+          CustomTextField(
+            hintText: 'Password',
+            inputType: TextInputType.visiblePassword,
+          ),
+          CustomTextField(
+            hintText: 'Confirm Password',
+            inputType: TextInputType.visiblePassword,
+          ),
+          CustomeButton(
+              buttontext: 'Sign Up',
+              margin: EdgeInsets.only(left: 30, right: 30, top: 50))
         ],
       ),
     );
