@@ -52,6 +52,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           CustomTextField(
+            hintText: 'Name',
+            inputType: TextInputType.name,
+          ),
+          CustomTextField(
             hintText: 'Email',
             inputType: TextInputType.emailAddress,
           ),

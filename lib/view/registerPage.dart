@@ -48,6 +48,10 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           CustomTextField(
+            hintText: 'Name',
+            inputType: TextInputType.name,
+          ),
+          CustomTextField(
             hintText: 'Email',
             inputType: TextInputType.emailAddress,
           ),
