@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:task3/services/database.dart'; // Import your database methods
 import 'package:task3/view/homePage.dart';
 import 'package:task3/view/loginPage.dart';
 import 'package:task3/widgets/button.dart';
@@ -29,20 +30,38 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> register() async {
     if (_formkey.currentState!.validate()) {
       try {
+        // Create user with email and password
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content:
-                Text('Register Successful', style: TextStyle(fontSize: 20)),
-          ),
-        );
+        User? user = userCredential.user;
 
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Homepage()),
-        );
+        if (user != null) {
+          // Prepare user info to store in Firestore
+          Map<String, dynamic> userInfoMap = {
+            "email": email, // Save email from the form
+            "name": name, // Save name from the form
+            "imgUrl": "", // Optionally save an image URL, if applicable
+            "id": user.uid // Use Firebase user ID
+          };
+
+          // Store user info in Firestore
+          await DatabaseMethods().addUser(user.uid, userInfoMap);
+
+          // Navigate to the home page
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Homepage()),
+          );
+
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content:
+                  Text('Register Successful', style: TextStyle(fontSize: 20)),
+            ),
+          );
+        }
       } on FirebaseAuthException catch (e) {
         String message = '';
         if (e.code == 'weak-password') {
@@ -53,6 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
           message = "An error occurred. Please try again.";
         }
 
+        // Show error message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.orangeAccent,
@@ -121,6 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             CustomTextField(
               textEditingController: passwordcontroller,
+              obscureText: true,
               hintText: 'Password',
               inputType: TextInputType.visiblePassword,
               validator: (value) {
@@ -132,6 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             CustomTextField(
               textEditingController: confirmPasswordController,
+              obscureText: true,
               hintText: 'Confirm Password',
               inputType: TextInputType.visiblePassword,
               validator: (value) {

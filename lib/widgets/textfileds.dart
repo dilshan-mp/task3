@@ -5,13 +5,16 @@ class CustomTextField extends StatelessWidget {
   final TextInputType inputType;
   final TextEditingController textEditingController;
   final String? Function(String?)? validator;
+  final bool obscureText;
 
   // Constructor to accept dynamic hint text
-  CustomTextField(
-      {required this.hintText,
-      required this.inputType,
-      required this.textEditingController,
-      this.validator});
+  CustomTextField({
+    required this.hintText,
+    required this.inputType,
+    required this.textEditingController,
+    this.validator,
+    this.obscureText = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class CustomTextField extends StatelessWidget {
         controller: textEditingController,
         keyboardType: inputType,
         validator: validator,
+        obscureText: obscureText,
         decoration: InputDecoration(
           //fillColor: Color.fromARGB(255, 141, 165, 255),
           //filled: true,

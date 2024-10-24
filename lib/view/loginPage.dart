@@ -105,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             CustomTextField(
               textEditingController: passwordController,
+              obscureText: true,
               hintText: 'Password',
               inputType: TextInputType.visiblePassword,
               validator: (value) {
