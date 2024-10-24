@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:task3/services/auth.dart';
 
 class SocialMeadiaButton extends StatefulWidget {
   const SocialMeadiaButton({super.key});
@@ -25,7 +26,9 @@ class _SocialMeadiaButtonState extends State<SocialMeadiaButton> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  AuthMethods().signInWithGoogle(context);
+                },
                 style: ElevatedButton.styleFrom(
                     fixedSize: Size(60, 44),
                     shape: RoundedRectangleBorder(
